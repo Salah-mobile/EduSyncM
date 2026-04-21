@@ -42,3 +42,28 @@ function addStudent($firstname,$lastname,$email,$password,$conn){
         echo $e.getMessage();
     }
 }
+if(isset($_POST["signU"])){
+   $firstname=$_POST["firstname"];
+   $lastname=$_POST["lastname"];
+   $email=$_POST["email"];
+   $password=$_POST["password"];
+   $reppassword=$_POST["repasw"];
+   if(verifierpas($password,$reppassword)==false){
+     header("Location:../pages/loginpage.php?password=match");
+     exit();
+   }
+    if(verifierchamp($firstname,$lastname,$email,$password,$reppassword)==false){
+     header("Location:../pages/loginpage.php?empty=yes");
+     exit();
+   } 
+   if(verfierU($email,$conn)){
+     header("Location:../pages/singinpage.php?user=exist");
+     exit();
+   }
+    addStudent($firstname,$lastname,$email,$password,$conn);
+    header("Location:../pages/dachbord.php");
+   
+}else{
+    header("Location:../pages/loginpage.php");
+    exit();
+}
