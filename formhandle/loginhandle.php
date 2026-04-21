@@ -8,3 +8,10 @@ function verifierpas($password,$reppassword){
         return false;
     }
 }
+function verifierchamp($firstname,$lastname,$email,$password,$reppassword){
+    if(empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($reppassword)){
+        return false;
+    }else{
+        return true;
+    }
+}
