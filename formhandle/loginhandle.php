@@ -35,11 +35,9 @@ function addStudent($firstname,$lastname,$email,$password,$conn){
     try {
         $sql="INSERT INTO  users (firstName,lastName,emil,password,role_id) VALUES (?,?,?,?,?)";
         $stm=$conn->prepare($sql);
-        if($stm->execute([$firstname,$lastname,$email,$password,3])){
-            echo $conn->lastInsertId();
-        }
+        $stm->execute([$firstname,$lastname,$email,$password,3]);
     } catch (PDOException $e) {
-        echo $e.getMessage();
+        echo "err lors de add";
     }
 }
 if(isset($_POST["signU"])){
@@ -49,21 +47,26 @@ if(isset($_POST["signU"])){
    $password=$_POST["password"];
    $reppassword=$_POST["repasw"];
    if(verifierpas($password,$reppassword)==false){
-     header("Location:../pages/loginpage.php?password=match");
+     header("Location:../pages/signuppage.php?password=match");
      exit();
    }
     if(verifierchamp($firstname,$lastname,$email,$password,$reppassword)==false){
-     header("Location:../pages/loginpage.php?empty=yes");
+     header("Location:../pages/signuppage.php?empty=yes");
      exit();
    } 
    if(verfierU($email,$conn)){
      header("Location:../pages/singinpage.php?user=exist");
      exit();
    }
-    addStudent($firstname,$lastname,$email,$password,$conn);
+   session_start();
+   addStudent($firstname,$lastname,$email,$password,$conn);
+   $_SESSION["email"]=$email;
+   $_SESSION["Fname"]=$firstname;
+   $_SESSION["Lname"]=$lastname;
     header("Location:../pages/dachbord.php");
    
 }else{
-    header("Location:../pages/loginpage.php");
+    header("Location:../pages/signuppage.php");
     exit();
 }
+
