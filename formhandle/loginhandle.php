@@ -31,3 +31,14 @@ function verfierU($email,$conn){
          echo "ereur eamil verifi";   
     } 
 }
+function addStudent($firstname,$lastname,$email,$password,$conn){
+    try {
+        $sql="INSERT INTO  users (firstName,lastName,emil,password,role_id) VALUES (?,?,?,?,?)";
+        $stm=$conn->prepare($sql);
+        if($stm->execute([$firstname,$lastname,$email,$password,3])){
+            echo $conn->lastInsertId();
+        }
+    } catch (PDOException $e) {
+        echo $e.getMessage();
+    }
+}
