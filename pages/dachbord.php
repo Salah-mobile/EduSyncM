@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(empty($_SESSION["Fname"])){
+        header("Location:signuppage.php");
+        exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +15,9 @@
 </head>
 <body>
     <h1>Welcome in the dechbord page  <?php 
-    session_start();
-    if()
 if(!empty($_SESSION["Fname"]) && !empty($_SESSION["Lname"])) {
     echo "Mr " . $_SESSION["Fname"] . " " . $_SESSION["Lname"];
-}{
-    header("Location:../signuppage.php");
-} ?></h1>
+}?></h1>
 <form action="" method="post">
     <button type="submit" name="logout" >D'éconnection</button>
 </form>

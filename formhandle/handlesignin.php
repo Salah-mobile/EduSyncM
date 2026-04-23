@@ -8,11 +8,8 @@ function connectpass($email,$password,$conn){
         $stm->execute([$email,$password]);
         $user=$stm->fetch(PDO::FETCH_ASSOC);
          if($user){
-           return true;
-        }else{
-            return false;
+           return $user;
         }
-
     } catch (PDOException $e) {
          echo "erreur connect acount"; 
     }
@@ -20,7 +17,11 @@ function connectpass($email,$password,$conn){
 if(isset($_POST["signin"])){
     $email=$_POST["email"];
     $password=$_POST["password"];
-    if(connectpass($email,$password,$conn)==true){
+    if(connectpass($email,$password,$conn)){
+        session_start();
+        $user=connectpass($email,$password,$conn);
+        $_SESSION["Fname"]=$user["firstName"];
+        $_SESSION["Lname"]=$user["lastName"];
         header("Location:../pages/dachbord.php");
         exit();
     }else{
