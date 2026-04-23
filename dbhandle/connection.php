@@ -7,5 +7,4 @@ function connection(){
     echo "erreur connection";
     return null;
 }
-
 }

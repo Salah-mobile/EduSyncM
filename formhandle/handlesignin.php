@@ -7,7 +7,6 @@ function connectpass($email,$password,$conn){
         $stm=$conn->prepare($sql);
         $stm->execute([$email,$password]);
         $user=$stm->fetch(PDO::FETCH_ASSOC);
-
          if($user){
            return true;
         }else{

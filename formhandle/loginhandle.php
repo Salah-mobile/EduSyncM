@@ -28,7 +28,7 @@ function verfierU($email,$conn){
             return false;
         }
     } catch (PDOException $e) {
-         echo "ereur eamil verifi";   
+         echo $e->getMessage();   
     } 
 }
 function addStudent($firstname,$lastname,$email,$password,$conn){
