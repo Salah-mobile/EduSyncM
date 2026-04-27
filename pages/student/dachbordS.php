@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(empty($_SESSION["Fname"])|| empty($_SESSION["role"])){
+        header("Location../signuppage.php");
+        exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +13,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello S</h1>
+
 </body>
 </html>
