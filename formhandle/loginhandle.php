@@ -63,8 +63,8 @@ if(isset($_POST["signU"])){
    $_SESSION["email"]=$email;
    $_SESSION["Fname"]=$firstname;
    $_SESSION["Lname"]=$lastname;
+    $_SESSION["role"]=3;
     header("Location:../pages/dachbord.php");
-   
 }else{
     header("Location:../pages/signuppage.php");
     exit();
