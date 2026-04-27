@@ -1,4 +1,4 @@
- <?php
+<?php
  session_start();
  include "../../dbhandle/connection.php";
     try {
@@ -21,6 +21,13 @@
 </head>
 <body>
     Welcom Mr <?php echo  $_SESSION["Fname"] ?>
+    <?php
+    if(isset($_GET["action"])){
+        if($_GET["action"]=="succ"){
+             echo "delete with success";
+        }
+    }
+    ?>
 <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
     <table class="w-full text-sm text-left rtl:text-right text-body">
         <thead class="text-sm text-body bg-neutral-secondary-soft border-b rounded-base border-default">
