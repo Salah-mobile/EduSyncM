@@ -27,7 +27,13 @@
              echo "delete with success";
         }
     }
+    if(isset($_POST["createU"])){
+        header("Location: createPage.php");
+    }
     ?>
+    <form action="#" method="post">
+        <button name="createU" >Create User</button>
+    </form>
 <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
     <table class="w-full text-sm text-left rtl:text-right text-body">
         <thead class="text-sm text-body bg-neutral-secondary-soft border-b rounded-base border-default">

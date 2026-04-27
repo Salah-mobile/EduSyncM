@@ -4,7 +4,6 @@ if(empty($_SESSION["Fname"])){
         header("Location:signuppage.php");
         exit();
 }else{
-    echo var_dump($_SESSION["role"]);
     if($_SESSION["role"]==="1"){
         header("Location: admin/dachbordA.php");
         exit();
