@@ -3,29 +3,18 @@ session_start();
 if(empty($_SESSION["Fname"])){
         header("Location:signuppage.php");
         exit();
+}else{
+    echo var_dump($_SESSION["role"]);
+    if($_SESSION["role"]==="1"){
+        header("Location: admin/dachbordA.php");
+        exit();
+    }
+    if($_SESSION["role"]==="2"){
+        header("Location: prof/dachbordP.php");
+        exit();
+    }
+    if($_SESSION["role"]==="3"){
+         header("Location: student/dachbordS.php");
+         exit();
+    }
 }
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Welcome in the dechbord page  <?php 
-if(!empty($_SESSION["Fname"]) && !empty($_SESSION["Lname"])) {
-    echo "Mr " . $_SESSION["Fname"] . " " . $_SESSION["Lname"];
-}?></h1>
-<form action="" method="post">
-    <button type="submit" name="logout" >D'éconnection</button>
-</form>
-</body>
-</html> 
-<?php
-if(isset($_POST["logout"])){
-    session_destroy();  
-    header("Location:../pages/signuppage.php");
-}
-?>
