@@ -74,15 +74,17 @@
                 <td class="px-6 py-4">
                     <form action="handledachbord.php" method="post">
                   <button 
-                    name="<?php echo $user["id"] ?>"
-                    type="button" 
+                    name="delete"
+                    value="<?php echo $user["id"] ?>"
+                    type="submit" 
                     class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 shadow-md transition duration-200">
                         DELETE
                 </button>
 
                 <button 
-                    name="<?php echo $user["id"] ?>"
-                    type="button" 
+                    name="update"
+                    type="submit" 
+                    value="<?php echo $user["id"] ?>"
                     class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 shadow-md transition duration-200">
                         UPDATE
                 </button>
@@ -95,6 +97,5 @@
         </tbody>
     </table>
 </div>
-
 </body>
 </html>
