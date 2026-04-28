@@ -53,6 +53,11 @@ $class_id = $user["classe_id"];
 
 <?php
 
+
+
+
+
+
 $sql = "SELECT * FROM  enrollments 
 JOIN students ON students.id=enrollments.student_id
 JOIN users ON users.id=students.user_id
