@@ -22,6 +22,7 @@ if(isset($_POST["signin"])){
         $user=connectpass($email,$password,$conn);
         $_SESSION["Fname"]=$user["firstName"];
         $_SESSION["Lname"]=$user["lastName"];
+        $_SESSION["role"]=$user["role_id"];
         header("Location:../pages/dachbord.php");
         exit();
     }else{
