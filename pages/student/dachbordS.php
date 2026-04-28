@@ -18,6 +18,8 @@ try {
     $user=$stm->fetch();
 } catch (PDOException $e) {
     echo $e->getMessage();
+
+    
 }
 $user_id = $user["user_id"];
 $class_id = $user["classe_id"];
