@@ -23,6 +23,9 @@ $user_id = $user["user_id"];
 $class_id = $user["classe_id"];
 ?>
 
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -111,6 +114,9 @@ $classmates = $stmt2->fetchAll();
 
 <div class="bg-white p-6 rounded shadow">
     <h2 class="text-xl font-bold mb-2">Mes Camarades</h2>
+
+
+
 
     <ul class="list-disc ml-5">
         <?php foreach($classmates as $row): ?>
