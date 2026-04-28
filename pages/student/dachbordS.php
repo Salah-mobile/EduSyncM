@@ -36,6 +36,12 @@ $class_id = $user["classe_id"];
 
 <body class="bg-gray-100">
 
+
+
+
+
+
+
 <nav class="bg-blue-600 text-white p-4 flex justify-between">
     <h1 class="font-bold">Student Dashboard</h1>
     <a href="../scripts/logout.php" class="bg-red-500 px-3 py-1 rounded">Logout</a>
