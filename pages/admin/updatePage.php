@@ -1,5 +1,6 @@
 <?php
 include "../../dbhandle/connection.php";
+
 if(isset($_GET["id"])){
     $userId=$_GET["id"];
     try {
@@ -70,6 +71,10 @@ if(isset($_POST["update"])){
                     <option 
                     value="3">
                         Student
+                    </option>
+                    <option 
+                    value="1">
+                        Admin
                     </option>
 
                     <option 
