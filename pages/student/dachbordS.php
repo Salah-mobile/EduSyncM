@@ -69,6 +69,10 @@ $stmt->execute([$user_id]);
 $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+
+
+
+
 <div class="bg-white p-6 rounded shadow">
     <h2 class="text-xl font-bold mb-2">Mes Cours</h2>
 
@@ -83,6 +87,9 @@ $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <?php
+
+
+
 
 $sql2 = "SELECT * 
 FROM  users 
