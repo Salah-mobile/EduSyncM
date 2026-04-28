@@ -65,6 +65,9 @@
         if(isset($_POST["createC"])){
             header("Location: createClasse.php");
         }
+        if(isset($_POST["createCourse"])){
+            header("Location: createCourse.php");
+        }
         ?>
 
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -76,6 +79,9 @@
             <form action="#" method="post" class="flex gap-3">
                 <button name="createC" class="px-5 py-2.5 bg-white border border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm">
                     <i class="fas fa-book-open text-indigo-500"></i> Create classe
+                </button>
+                 <button name="createCourse" class="px-5 py-2.5 bg-white border border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fas fa-book-open text-indigo-500"></i> Create cours
                 </button>
                 <button name="createU" class="px-5 py-2.5 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-all flex items-center gap-2 shadow-lg shadow-indigo-200">
                     <i class="fas fa-plus"></i> Create User
