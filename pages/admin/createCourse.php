@@ -18,7 +18,7 @@ try {
     <title>Document</title>
 </head>
 <body>
-    <form action="">
+    <form action="formCreateCourse.php" method="post">
         <button>Create Cours</button>
     </form>
     <table>
