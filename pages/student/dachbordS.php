@@ -38,6 +38,12 @@ $class_id = $user["classe_id"];
     <a href="../scripts/logout.php" class="bg-red-500 px-3 py-1 rounded">Logout</a>
 </nav>
 
+
+
+
+
+
+
 <div class="p-6 space-y-6">
 <div class="bg-white p-6 rounded shadow">
     <h2 class="text-xl font-bold mb-2">Mon Profil</h2>
