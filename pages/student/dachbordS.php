@@ -102,6 +102,13 @@ $stmt2->execute([$class_id]);
 $classmates = $stmt2->fetchAll();
 ?>
 
+
+
+
+
+
+
+
 <div class="bg-white p-6 rounded shadow">
     <h2 class="text-xl font-bold mb-2">Mes Camarades</h2>
 
