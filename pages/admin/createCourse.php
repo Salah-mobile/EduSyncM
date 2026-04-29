@@ -2,12 +2,33 @@
 require "../../dbhandle/connection.php";
 $conn=connection();
 try {
-    $sql="SELECT * FROM courses JOIN users on users.id=courses.user_id";
+    $sql="SELECT  courses.id AS course_id,
+    courses.title,
+    courses.description,
+    courses.total_hours,
+    users.firstName,
+    users.lastName FROM courses JOIN users on users.id=courses.user_id";
     $stm=$conn->prepare($sql);
     $stm->execute();
     $courses=$stm->fetchAll();
 } catch (PDOException $e) {
     echo $e->getMessage();
+}
+if(isset($_POST["delete"])){
+    $course_id=$_POST["delete"];
+    try {
+        $sql="DELETE  FROM courses WHERE id=?";
+        $stm=$conn->prepare($sql);
+        $stm->execute([$course_id]);
+        header("Location:createCourse.php");
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+if(isset($_POST["update"])){
+    $course_id=$_POST["update"];
+    header("Location: formUpdateCourse.php?icC=$course_id");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -65,6 +86,7 @@ try {
                             <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-200">Description</th>
                             <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-200">Duration</th>
                             <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-200">Professor</th>
+                            <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-200">Action</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100">
@@ -95,6 +117,18 @@ try {
                                         <?= "Prof. ".$course["firstName"]." ".$course["lastName"]?>
                                     </span>
                                 </div>
+                            </td>
+                            <td>
+                                <form action="#" method="post" class="flex justify-end gap-2">
+                                    <button name="update" value="<?php echo $course["course_id"] ?>" 
+                                            class="p-2 text-indigo-500 hover:bg-indigo-50 rounded-lg transition-colors" title="Edit">
+                                        <i class="fas fa-pen-to-square"></i>
+                                    </button>
+                                    <button name="delete" value="<?php echo $course["course_id"]?>" 
+                                            class="p-2 text-rose-500 hover:bg-rose-50 rounded-lg transition-colors" title="Delete">
+                                        <i class="fas fa-trash-can"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         <?php } ?>
