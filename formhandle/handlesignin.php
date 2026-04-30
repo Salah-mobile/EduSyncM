@@ -11,7 +11,7 @@ function connectpass($email,$password,$conn){
            return $user;
         }
     } catch (PDOException $e) {
-         echo "erreur connect acount"; 
+         echo $e->getMessage(); 
     }
 }
 if(isset($_POST["signin"])){
@@ -23,6 +23,7 @@ if(isset($_POST["signin"])){
         $_SESSION["Fname"]=$user["firstName"];
         $_SESSION["Lname"]=$user["lastName"];
         $_SESSION["role"]=$user["role_id"];
+        $_SESSION["email"]=$user["emil"];
         header("Location:../pages/dachbord.php");
         exit();
     }else{

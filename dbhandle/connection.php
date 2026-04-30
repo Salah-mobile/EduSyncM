@@ -1,10 +1,11 @@
 <?php
-function connection(){
+function connection()
+{
     try {
-     $conn =new PDO("mysql:host=localhost;dbname=educsync", "root", "");
-     return $conn;
-} catch (PDOException $e) {
-    echo "erreur connection";
-    return null;
-}
+        $conn = new PDO("mysql:host=localhost;dbname=edusync12", "root", "");
+        return $conn;
+    } catch (PDOException $e) {
+        echo "erreur connection";
+        return null;
+    }
 }

@@ -15,7 +15,7 @@ if(empty($_SESSION["Fname"])){
         header("Location: prof/dachbordP.php");
         exit();
     }
-    if($_SESSION["role"]==="3"){
+    if($_SESSION["role"]===3){
          header("Location: student/dachbordS.php");
          exit();
     }
