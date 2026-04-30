@@ -26,3 +26,18 @@ $course = $check_stmt->fetch(PDO::FETCH_ASSOC);
 if (!$course) {
     die("Vous n'avez pas l'autorisation d'accéder à ce cours.");
 }
+
+// Jointure SQL pour les etudients
+$sql = "SELECT 
+            u.username, 
+            u.email, 
+            e.status, 
+            e.enrolled_at 
+        FROM users u
+        INNER JOIN enrollments e ON u.id = e.student_id
+        WHERE e.course_id = :c_id";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute(['c_id' => $course_id]);
+$students = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
