@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once "../../dbhandle/connection.php";
-
 $conn=connection();
 if (!isset($_SESSION["Fname"])) {
     header("Location: login.php");
@@ -18,15 +17,10 @@ try {
     $user=$stm->fetch();
 } catch (PDOException $e) {
     echo $e->getMessage();
-
-    
 }
 $user_id = $user["user_id"];
 $class_id = $user["classe_id"];
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,24 +31,10 @@ $class_id = $user["classe_id"];
 </head>
 
 <body class="bg-gray-100">
-
-
-
-
-
-
-
 <nav class="bg-blue-600 text-white p-4 flex justify-between">
     <h1 class="font-bold">Student Dashboard</h1>
-    <a href="../scripts/logout.php" class="bg-red-500 px-3 py-1 rounded">Logout</a>
+    <a href="../signuppage.php" class="bg-red-500 px-3 py-1 rounded">Logout</a>
 </nav>
-
-
-
-
-
-
-
 <div class="p-6 space-y-6">
 <div class="bg-white p-6 rounded shadow">
     <h2 class="text-xl font-bold mb-2">Mon Profil</h2>
@@ -63,12 +43,6 @@ $class_id = $user["classe_id"];
 </div>
 
 <?php
-
-
-
-
-
-
 $sql = "SELECT * FROM  enrollments 
 JOIN students ON students.id=enrollments.student_id
 JOIN users ON users.id=students.user_id
@@ -79,14 +53,8 @@ $stmt = $conn->prepare($sql);
 $stmt->execute([$user_id]);
 $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
-
-
-
-
 <div class="bg-white p-6 rounded shadow">
     <h2 class="text-xl font-bold mb-2">Mes Cours</h2>
-
     <?php foreach($courses as $row): ?>
         <div class="border p-3 rounded mb-2">
             <p><b>Cours:</b> <?= $row["title"] ?></p>
@@ -98,10 +66,6 @@ $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <?php
-
-
-
-
 $sql2 = "SELECT * 
 FROM  users 
 JOIN students ON students.user_id=users.id
@@ -112,14 +76,6 @@ $stmt2 = $conn->prepare($sql2);
 $stmt2->execute([$class_id]);
 $classmates = $stmt2->fetchAll();
 ?>
-
-
-
-
-
-
-
-
 <div class="bg-white p-6 rounded shadow">
     <h2 class="text-xl font-bold mb-2">Mes Camarades</h2>
 
