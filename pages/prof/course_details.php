@@ -134,7 +134,50 @@ $stmt_class = $conn->prepare($sql_class);
 $stmt_class->execute(['course_id' => $course_id]);
 $students_promo = $stmt_class->fetchAll(PDO::FETCH_ASSOC);
 
-// calciler le nombre d'etudiants
+// calculer le nombre d'etudiants
 $total_students = count($students_promo);
 $class_display_name = $students_promo[0]['class_name'] ?? "Classe non définie";
 ?>
+
+<div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+    <!-- Entête de la section -->
+    <div class="flex items-center justify-between mb-6 border-b pb-4">
+        <div>
+            <h2 class="text-xl font-bold text-gray-800">
+                <i class="fas fa-users-rectangle text-blue-600 mr-2"></i>
+                Composition de la Classe : <span class="text-blue-600"><?= htmlspecialchars($class_display_name) ?></span>
+            </h2>
+            <p class="text-gray-500 text-sm">Liste complète des élèves de cette promotion.</p>
+        </div>
+        <div class="text-right">
+            <span class="block text-2xl font-black text-gray-800"><?= $total_students ?></span>
+            <span class="text-xs uppercase text-gray-400 font-bold">Élèves au total</span>
+        </div>
+    </div>
+
+    <!-- Grille des élèves (US22) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <?php if ($total_students > 0): ?>
+            <?php foreach ($students_promo as $student): ?>
+                <div class="flex items-center p-4 bg-gray-50 rounded-xl border border-transparent hover:border-blue-200 hover:bg-white transition-all">
+                    <!-- Avatar icon -->
+                    <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold mr-3">
+                        <?= strtoupper(substr($student['username'], 0, 1)) ?>
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="text-sm font-bold text-gray-800 truncate">
+                            <?= htmlspecialchars($student['username']) ?>
+                        </p>
+                        <p class="text-xs text-gray-500 truncate">
+                            <?= htmlspecialchars($student['email']) ?>
+                        </p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="col-span-full py-10 text-center bg-gray-50 rounded-xl border-2 border-dashed">
+                <p class="text-gray-400 italic">Aucun élève trouvé pour cette classe.</p>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
