@@ -181,3 +181,12 @@ $class_display_name = $students_promo[0]['class_name'] ?? "Classe non définie";
         <?php endif; ?>
     </div>
 </div>
+
+<?php
+//  Modification du statut d'un étudiant
+if (isset($_POST['update_status'])) {
+    $student_id = $_POST['student_id'];
+    $new_status = $_POST['new_status'];
+    $c_id = $_GET['id']; 
+
+   
