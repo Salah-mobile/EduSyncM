@@ -119,3 +119,18 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </body>
 </html>
+
+
+
+<?php
+// Récupérer la composition de la classe spécifique au cours
+$sql_class = "SELECT u.username, u.email, cl.name AS class_name 
+              FROM users u
+              JOIN classes cl ON u.class_id = cl.id
+              JOIN courses c ON c.class_id = cl.id
+              WHERE c.id = :course_id AND u.role = 'Student'";
+
+$stmt_class = $conn->prepare($sql_class);
+$stmt_class->execute(['course_id' => $course_id]);
+$students_promo = $stmt_class->fetchAll(PDO::FETCH_ASSOC);
+
