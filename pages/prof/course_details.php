@@ -134,3 +134,7 @@ $stmt_class = $conn->prepare($sql_class);
 $stmt_class->execute(['course_id' => $course_id]);
 $students_promo = $stmt_class->fetchAll(PDO::FETCH_ASSOC);
 
+// calciler le nombre d'etudiants
+$total_students = count($students_promo);
+$class_display_name = $students_promo[0]['class_name'] ?? "Classe non définie";
+?>
