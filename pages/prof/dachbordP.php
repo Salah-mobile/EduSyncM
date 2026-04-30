@@ -13,21 +13,19 @@ function connection(){
 
 
 
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'prof') {
-    header("Location: ../../singinpage.php");
-    exit;
+// Vérifier si l'utilisateur est un Prof
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'Prof') {
+    
+    header('Location: login.php'); 
+    exit();
+    
+    
+    $prof_id = 1; 
+} else {
+    $prof_id = $_SESSION['user_id'];
 }
 
 
-$prof_id = $_SESSION['user']['id'];
 
-// 4. Requête SQL (US20): Njibo ghir l-cours dial had l-prof
-try {
-    $stmt = $pdo->prepare("SELECT * FROM courses WHERE instructor_id = ?");
-    $stmt->execute([$prof_id]);
-    $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Erreur SQL: " . $e->getMessage());
-}
-?>
+
 
