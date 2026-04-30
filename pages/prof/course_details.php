@@ -189,4 +189,21 @@ if (isset($_POST['update_status'])) {
     $new_status = $_POST['new_status'];
     $c_id = $_GET['id']; 
 
-   
+    try {
+        $sql_update = "UPDATE enrollments 
+                       SET status = :status 
+                       WHERE student_id = :s_id AND course_id = :c_id";
+        
+        $stmt_upd = $conn->prepare($sql_update);
+        $stmt_upd->execute([
+            'status' => $new_status,
+            's_id'   => $student_id,
+            'c_id'   => $c_id
+        ]);
+        
+        $success_msg = "Statut mis à jour avec succès !";
+    } catch (PDOException $e) {
+        $error_msg = "Erreur lors de la mise à jour.";
+    }
+}
+?>
